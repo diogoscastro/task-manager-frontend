@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import TaskItem from "./components/TaskItem";
 
 const App = () => {
@@ -14,6 +15,21 @@ const App = () => {
             isCompleted: true,
         },
     ]);
+
+    const fetchTasks = async () => {
+        try {
+            const { data } = await axios.get(
+                "https://task-manager-a86q.onrender.com/tasks/"
+            );
+            setTasks(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchTasks();
+    }, []);
 
     return (
         <>
