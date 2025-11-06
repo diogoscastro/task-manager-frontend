@@ -1,5 +1,7 @@
 import { useState } from "react";
+import axios from "axios";
 import { FaPlus } from "react-icons/fa";
+import { useAlert } from "react-alert";
 
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
@@ -9,8 +11,20 @@ import "./AddTask.scss";
 const AddTask = () => {
     const [task, setTask] = useState("");
 
+    const alert = useAlert;
+
     const onChange = (e) => {
         setTask(e.target.value);
+    };
+
+    const handleTaskAddition = async () => {
+        try {
+            if (task.length === 0) {
+                return alert.error(
+                    "A tarefa precisa de uma descrição para ser adicionada."
+                );
+            }
+        } catch (error) {}
     };
 
     return (
@@ -20,7 +34,7 @@ const AddTask = () => {
                 value={task}
                 onChange={onChange}
             />
-            <CustomButton>
+            <CustomButton onClick={handleTaskAddition}>
                 <FaPlus size={14} color="#FFFFFF" />
             </CustomButton>
         </div>
