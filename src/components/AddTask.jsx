@@ -8,7 +8,7 @@ import CustomButton from "./CustomButton";
 
 import "./AddTask.scss";
 
-const AddTask = () => {
+const AddTask = ({ fetchTasks }) => {
     const [task, setTask] = useState("");
 
     const onChange = (e) => {
@@ -26,7 +26,12 @@ const AddTask = () => {
                 description: task,
                 isCompleted: false,
             });
-        } catch (error) {}
+            await fetchTasks();
+
+            setTask("");
+        } catch (error) {
+            return toast.error("Algo deu errado.");
+        }
     };
 
     return (
