@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { FaPlus } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
@@ -17,7 +18,7 @@ const AddTask = () => {
     const handleTaskAddition = async () => {
         try {
             if (task.length === 0) {
-                return alert.error(
+                return toast.error(
                     "A tarefa precisa de uma descrição para ser adicionada."
                 );
             }
