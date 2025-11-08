@@ -21,7 +21,7 @@ const CustomInput = ({ label, value, onChange, onEnterPress }) => {
                 <label
                     className={`${
                         value.length > 0 ? "shrink" : ""
-                    }custom-input-label`}
+                    } custom-input-label`}
                 >
                     {label}
                 </label>
