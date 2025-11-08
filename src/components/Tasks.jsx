@@ -5,6 +5,7 @@ import "./Tasks.scss";
 
 import TaskItem from "./TaskItem";
 import AddTask from "./AddTask";
+import { toast } from "react-toastify";
 
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
@@ -15,8 +16,8 @@ const Tasks = () => {
                 "https://task-manager-a86q.onrender.com/tasks/"
             );
             setTasks(data);
-        } catch (error) {
-            console.log(error);
+        } catch (_error) {
+            toast.error("Não foi possível recuperar as tarefas.");
         }
     };
 

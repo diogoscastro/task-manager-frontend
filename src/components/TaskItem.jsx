@@ -14,7 +14,7 @@ const TaskItem = ({ task, fetchTasks }) => {
             await fetchTasks();
 
             toast.success("A tarefa foi removida com sucesso!");
-        } catch (error) {
+        } catch (_error) {
             toast.error("Algo deu errado.");
         }
     };
@@ -29,7 +29,7 @@ const TaskItem = ({ task, fetchTasks }) => {
             await fetchTasks();
 
             toast.success("A tarefa foi modificada com sucesso!");
-        } catch (error) {
+        } catch (_error) {
             toast.error("Algo deu errado.");
         }
     };
