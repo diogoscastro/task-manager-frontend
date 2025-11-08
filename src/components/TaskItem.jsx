@@ -1,7 +1,20 @@
-import "./TaskItem.scss";
+import axios from "axios";
 import { AiFillDelete } from "react-icons/ai";
+import { toast } from "react-toastify";
+
+import "./TaskItem.scss";
 
 const TaskItem = ({ task }) => {
+    const handleTaskDeletion = async () => {
+        try {
+            await axios.delete(
+                `https://task-manager-a86q.onrender.com/tasks/${task._id}`
+            );
+        } catch (error) {
+            toast.error("Algo deu errado.");
+        }
+    };
+
     return (
         <div className="task-item-container">
             <div className="task-description">
@@ -24,7 +37,7 @@ const TaskItem = ({ task }) => {
                 </label>
             </div>
 
-            <div className="delete">
+            <div className="delete" onClick={handleTaskDeletion}>
                 <AiFillDelete size={18} color="#F97474" />
             </div>
         </div>
