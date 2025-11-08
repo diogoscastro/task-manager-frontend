@@ -4,12 +4,16 @@ import { toast } from "react-toastify";
 
 import "./TaskItem.scss";
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, fetchTasks }) => {
     const handleTaskDeletion = async () => {
         try {
             await axios.delete(
                 `https://task-manager-a86q.onrender.com/tasks/${task._id}`
             );
+
+            await fetchTasks();
+
+            toast.success("A tarefa foi removida com sucesso!");
         } catch (error) {
             toast.error("Algo deu errado.");
         }
@@ -37,8 +41,12 @@ const TaskItem = ({ task }) => {
                 </label>
             </div>
 
-            <div className="delete" onClick={handleTaskDeletion}>
-                <AiFillDelete size={18} color="#F97474" />
+            <div className="delete">
+                <AiFillDelete
+                    size={18}
+                    color="#F97474"
+                    onClick={handleTaskDeletion}
+                />
             </div>
         </div>
     );
