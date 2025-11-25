@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import axios from "axios";
 
 import "./Tasks.scss";
@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 const Tasks = () => {
     const [tasks, setTasks] = useState([]);
 
-    const fetchTasks = async () => {
+    const fetchTasks = useCallback(async () => {
         try {
             const { data } = await axios.get(
                 "https://task-manager-a86q.onrender.com/tasks/"
@@ -19,7 +19,7 @@ const Tasks = () => {
         } catch (_error) {
             toast.error("Não foi possível recuperar as tarefas.");
         }
-    };
+    }, []);
 
     const lastTasks = useMemo(() => {
         return tasks.filter((task) => task.isCompleted === false);
@@ -31,7 +31,7 @@ const Tasks = () => {
 
     useEffect(() => {
         fetchTasks();
-    }, []);
+    }, [fetchTasks]);
 
     return (
         <div className="tasks-container">
