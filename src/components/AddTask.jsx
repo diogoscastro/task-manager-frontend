@@ -22,10 +22,11 @@ const AddTask = ({ fetchTasks }) => {
                     "A tarefa precisa de uma descrição para ser adicionada."
                 );
             }
-            await axios.post("https://task-manager-a86q.onrender.com/tasks/", {
+            await axios.post(`${process.env.REACT_APP_API_URL}/tasks/`, {
                 description: task,
                 isCompleted: false,
             });
+            console.log(process.env.REACT_APP_API_URL);
             await fetchTasks();
 
             setTask("");
