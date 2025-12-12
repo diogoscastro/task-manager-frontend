@@ -16,6 +16,7 @@ const Tasks = () => {
                 `${process.env.REACT_APP_API_URL}/tasks/`
             );
             setTasks(data);
+            console.log("DATA RECEBIDA:", data);
         } catch (_error) {
             toast.error("Não foi possível recuperar as tarefas.");
         }
